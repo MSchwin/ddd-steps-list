@@ -20,12 +20,7 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
 
   constructor() {
     super();
-    this.title = "";
-    this.t = this.t || {};
-    this.t = {
-      ...this.t,
-      title: "Title",
-    };
+    this.dddPrimary = false;
     this.registerLocalization({
       context: this,
       localesPath:
@@ -39,7 +34,7 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
   static get properties() {
     return {
       ...super.properties,
-      title: { type: String },
+      dddPrimary: { type: Boolean, attribute: 'ddd-primary', reflect: true }
     };
   }
 
@@ -49,16 +44,6 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
     css`
       :host {
         display: block;
-        color: var(--ddd-theme-primary);
-        background-color: var(--ddd-theme-accent);
-        font-family: var(--ddd-font-navigation);
-      }
-      .wrapper {
-        margin: var(--ddd-spacing-2);
-        padding: var(--ddd-spacing-4);
-      }
-      h3 span {
-        font-size: var(--ddd-steps-list-label-font-size, var(--ddd-font-size-s));
       }
     `];
   }
@@ -67,9 +52,44 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
   render() {
     return html`
 <div class="wrapper">
-  <h3><span>${this.t.title}:</span> ${this.title}</h3>
-  <slot></slot>
+<slot @slotchange="${this._onSlotChange}"></slot>
 </div>`;
+  }
+
+
+
+  firstUpdated() {
+    this._validateChildren();
+  }
+
+  _onSlotChange() {
+    this._validateChildren();
+  }
+  _validateChildren() {
+    const children = Array.from(this.querySelectorAll('ddd-steps-list-item'));
+    let stepCount = 0;
+    children.forEach(child => {
+      stepCount++;
+      child.steps = stepCount;
+      if (this.dddPrimary) {
+        child.setAttribute('data-primary', '');
+      } else {
+        child.removeAttribute('data-primary');
+      }
+    });
+  }
+
+  updated(changedProps) {
+    if (changedProps.has('dddPrimary')) {
+      const items = this.querySelectorAll('ddd-steps-list-item');
+      items.forEach(item => {
+        if (this.dddPrimary) {
+          item.setAttribute('data-primary', '');
+        } else {
+          item.removeAttribute('data-primary');
+        }
+      });
+    }
   }
 
   /**
