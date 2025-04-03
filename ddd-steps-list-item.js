@@ -74,28 +74,33 @@ export class DddStepsListItem extends DDDSuper(I18NMixin(LitElement)) {
         background-color: var(--ddd-theme-default-beaverBlue, #caccd0);
         color: #fff;
         margin-top: 30px;
+        position: absolute;
         
   
       }
+      
       :host([data-primary]) .circle {
         background-color: var(--ddd-theme-default-beaverBlue, #1e407c);
         color: #fff;
       }
-      .ss{
-        display:flex;
-        flex-direction: column;
+      
+      
+      .vl { 
+      border-left: var(--ddd-border-md);
+      margin-left:20px;
+      border-left-style: dashed;
+      border-left-color: var(--ddd-theme-default-limestoneGray);
+    
+
+      
+      }
         
-
-      }
-      p{
-        margin-left: 17px;
-        font-size: 10px;
-
-      }
-
       .step-content {
         flex: 1;
+        margin-left: var(--ddd-spacing-9, 8px);
+       
       }
+    
       
     `];
   }
@@ -104,11 +109,10 @@ export class DddStepsListItem extends DDDSuper(I18NMixin(LitElement)) {
   render() {
     return html`
 <div class="wrapper">
-<div class="ss">
 <div class="circle">${this.steps}</div>
-<div><p>|</p></div>
-</div>
+<div class= "vl">
 <div class="step-content"><slot></slot></div>
+</div>
 
 </div>`;
   }
