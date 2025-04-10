@@ -11,6 +11,8 @@ import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
  * 
  * @demo index.html
  * @element ddd-steps-list
+ * 
+ * 
  */
 export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
 
@@ -45,6 +47,9 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
       :host {
         display: block;
       }
+     
+        
+      
     `];
   }
 
@@ -72,9 +77,9 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
       stepCount++;
       child.steps = stepCount;
       if (this.dddPrimary) {
-        child.setAttribute('data-primary', '');
+        child.setAttribute('data-accent', '');
       } else {
-        child.removeAttribute('data-primary');
+        child.removeAttribute('data-accent');
       }
     });
   }
@@ -84,9 +89,9 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
       const items = this.querySelectorAll('ddd-steps-list-item');
       items.forEach(item => {
         if (this.dddPrimary) {
-          item.setAttribute('data-primary', '');
+          item.setAttribute('data-accent', '');
         } else {
-          item.removeAttribute('data-primary');
+          item.removeAttribute('data-accent');
         }
       });
     }

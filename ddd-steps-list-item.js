@@ -50,12 +50,9 @@ export class DddStepsListItem extends DDDSuper(I18NMixin(LitElement)) {
         color: var(--ddd-theme-primary);
         background-color: var(--ddd-theme-accent);
         font-family: var(--ddd-font-navigation);
+        
       }
-      .wrapper {
-        display: flex;
-        align-items: start;
-        gap: var(--ddd-spacing-2, 8px)
-      }
+      
       h3 span {
         font-size: var(--ddd-steps-list-label-font-size, var(--ddd-font-size-s));
       }
@@ -73,7 +70,7 @@ export class DddStepsListItem extends DDDSuper(I18NMixin(LitElement)) {
         margin-right: var(--ddd-spacing-4, 16px);
         background-color: var(--ddd-theme-default-beaverBlue, #caccd0);
         color: #fff;
-        margin-top: 30px;
+       
         position: absolute;
         
   
@@ -90,16 +87,21 @@ export class DddStepsListItem extends DDDSuper(I18NMixin(LitElement)) {
       margin-left:20px;
       border-left-style: dashed;
       border-left-color: var(--ddd-theme-default-limestoneGray);
+      
     
 
       
       }
         
       .step-content {
-        flex: 1;
+       
         margin-left: var(--ddd-spacing-9, 8px);
+        
+
+        
        
       }
+      
     
       
     `];
@@ -113,7 +115,6 @@ export class DddStepsListItem extends DDDSuper(I18NMixin(LitElement)) {
 <div class= "vl">
 <div class="step-content"><slot></slot></div>
 </div>
-
 </div>`;
   }
   
